@@ -1,0 +1,11 @@
+{
+  "name": "ice-cream-server",
+  "version": "1.0.0",
+  "description": "disq assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vithika Jha <vithikajha14@gmail.com>",
+  "license": "ISC"
+}
