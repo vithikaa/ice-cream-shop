@@ -2,9 +2,10 @@
   "name": "ice-cream-server",
   "version": "1.0.0",
   "description": "disq assignment",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "Vithika Jha <vithikajha14@gmail.com>",
   "license": "ISC",
@@ -12,7 +13,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.10.0"
+    "mongoose": "^5.10.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "eslint": "^7.7.0",
