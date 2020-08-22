@@ -15,7 +15,7 @@
             </li>
 
             <li :class="{ green: cartCount }">
-              <a @click="() => {}" :class="{ 'white-text': cartCount }">
+              <a @click="openCart" :class="{ 'white-text': cartCount }">
                 <i class="material-icons left">shopping_cart</i>
                 Cart
                 <span
@@ -54,16 +54,35 @@
     <main>
       <router-view />
     </main>
+    <Cart v-model="showCart" />
   </div>
 </template>
 
 <script>
+import Cart from '@/components/Cart'
+
 export default {
   name: 'LayoutMain',
+
+  components: {
+    Cart
+  },
+
+  data() {
+    return {
+      showCart: false
+    }
+  },
 
   computed: {
     cartCount() {
       return this.$store.state.cart.length
+    }
+  },
+
+  methods: {
+    openCart() {
+      this.showCart = true
     }
   }
 }
