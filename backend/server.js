@@ -35,9 +35,9 @@ app.use("/", require("./routes"));
 
 // app.use(express.static(PUBLIC_DIR))
 
-app.get("*", function (req, res) {
-  res.sendFile(PUBLIC_DIR + "/index.html");
-});
+// app.get("*", function (req, res) {
+//   res.sendFile(PUBLIC_DIR + "/index.html");
+// });
 
 app.listen(PORT, (err) => {
   if (err) throw err;
