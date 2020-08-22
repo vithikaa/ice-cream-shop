@@ -15,7 +15,7 @@
                 :key="flavor._id"
                 class="btn"
                 :class="
-                  selectedIcecream.flavor == flavor._id
+                  selectedIcecream.flavor._id == flavor._id
                     ? 'blue'
                     : 'bordered btn-flat'
                 "
@@ -35,7 +35,7 @@
                 :key="wafer._id"
                 class="btn"
                 :class="
-                  selectedIcecream.wafer == wafer._id
+                  selectedIcecream.wafer._id == wafer._id
                     ? 'green'
                     : 'bordered btn-flat'
                 "
@@ -55,7 +55,7 @@
                 :key="topping._id"
                 class="btn"
                 :class="
-                  selectedIcecream.toppings.includes(topping._id)
+                  selectedIcecream.toppings.includes(topping)
                     ? 'orange'
                     : 'bordered btn-flat'
                 "
@@ -72,7 +72,8 @@
                 class="btn btn-large"
                 @click="addToCart"
                 :class="{
-                  disabled: !selectedIcecream.wafer || !selectedIcecream.flavor
+                  disabled:
+                    !selectedIcecream.wafer._id || !selectedIcecream.flavor._id
                 }"
               >
                 Add to Cart
@@ -94,8 +95,13 @@ export default {
   data() {
     return {
       selectedIcecream: {
-        wafer: null,
-        flavor: null,
+        _id: null,
+        wafer: {
+          _id: null
+        },
+        flavor: {
+          _id: null
+        },
         toppings: []
       },
 
@@ -141,28 +147,28 @@ export default {
   created() {
     this.fetchOptions()
   },
-  
+
   mounted() {
     M.AutoInit()
   },
 
   methods: {
     selectFlavor(flavor) {
-      this.selectedIcecream.flavor = flavor._id
+      this.selectedIcecream.flavor = flavor
     },
 
     selectWafer(wafer) {
-      this.selectedIcecream.wafer = wafer._id
+      this.selectedIcecream.wafer = wafer
     },
 
     toggleTopping(topping) {
-      let index = this.selectedIcecream.toppings.indexOf(topping._id)
+      let index = this.selectedIcecream.toppings.indexOf(topping)
 
       if (index != -1) {
         this.selectedIcecream.toppings.splice(index, 1)
       } else {
         if (this.selectedIcecream.toppings.length < 2)
-          this.selectedIcecream.toppings.push(topping._id)
+          this.selectedIcecream.toppings.push(topping)
         else M.toast({ html: 'You can only select upto 2 toppings!' })
       }
     },
@@ -170,6 +176,19 @@ export default {
     addToCart() {
       if (!this.selectedIcecream.wafer || !this.selectedIcecream.flavor) {
         M.toast({ html: 'You must select a flavor and a wafer!' })
+      } else {
+        this.$store.dispatch('addToCart', { ...this.selectedIcecream })
+        this.selectedIcecream = {
+          _id: null,
+          wafer: {
+            _id: null
+          },
+          flavor: {
+            _id: null
+          },
+          toppings: []
+        }
+        M.toast({ html: 'Added to cart!' })
       }
     },
 
