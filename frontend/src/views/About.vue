@@ -1,5 +1,11 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>Created by <a href="https://vithikaa.github.io">Vithika Jha</a>.</h1>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'PageAbout'
+}
+</script>
