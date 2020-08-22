@@ -22,3 +22,8 @@
 .no-mar-bottom {
   margin-bottom: 0 !important;
 }
+
+.btn.bordered {
+  border: 1px solid currentColor;
+  box-sizing: content-box;
+}
