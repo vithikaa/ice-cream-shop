@@ -34,3 +34,24 @@ exports.order_get = async (req, res) => {
       });
     });
 };
+
+exports.order_post = async (req, res) => {
+  const { customer, icecreams } = req.body;
+  const newOrder = new Order({
+    customer,
+    icecreams,
+    date: new Date(),
+  });
+  newOrder
+    .save()
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send({
+        success: false,
+        error: err,
+      });
+    });
+};
