@@ -21,17 +21,10 @@ exports.order_get = async (req, res) => {
   const { orderId } = req.params;
   Order.findOne({ _id: orderId })
     .then((doc) => {
-      if (doc) {
-        res.send({
-          success: true,
-          data: doc,
-        });
-      } else {
-        res.send({
-          success: true,
-          data: null,
-        });
-      }
+      res.send({
+        success: true,
+        data: doc,
+      });
     })
     .catch((err) => {
       console.error(err);
