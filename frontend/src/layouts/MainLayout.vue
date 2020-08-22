@@ -14,10 +14,17 @@
               <router-link to="/about">About</router-link>
             </li>
 
-            <li>
-              <a @click="() => {}">
+            <li :class="{ green: cartCount }">
+              <a @click="() => {}" :class="{ 'white-text': cartCount }">
                 <i class="material-icons left">shopping_cart</i>
                 Cart
+                <span
+                  v-if="cartCount"
+                  class="new badge red white-text"
+                  data-badge-caption=""
+                >
+                  {{ cartCount }}
+                </span>
               </a>
             </li>
           </ul>
@@ -52,6 +59,12 @@
 
 <script>
 export default {
-  name: 'LayoutMain'
+  name: 'LayoutMain',
+
+  computed: {
+    cartCount() {
+      return this.$store.state.cart.length
+    }
+  }
 }
 </script>
