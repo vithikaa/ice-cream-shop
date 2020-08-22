@@ -18,12 +18,26 @@ exports.orders_get = async (req, res) => {
 };
 
 exports.order_get = async (req, res) => {
-    Order.findOne({_id: orderId}).then(doc=>{
-        if(doc){
-            res.send({
-                success: true,
-                data: doc,
-              });
-        }
+  const { orderId } = req.params;
+  Order.findOne({ _id: orderId })
+    .then((doc) => {
+      if (doc) {
+        res.send({
+          success: true,
+          data: doc,
+        });
+      } else {
+        res.send({
+          success: true,
+          data: null,
+        });
+      }
     })
-}
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send({
+        success: false,
+        error: err,
+      });
+    });
+};
