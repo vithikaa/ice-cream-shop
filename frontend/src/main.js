@@ -3,6 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import 'materialize-css/sass/materialize.scss'
+import '@/assets/css/override.css'
+import '@/assets/css/style.css'
+
 Vue.config.productionTip = false;
 
 new Vue({
