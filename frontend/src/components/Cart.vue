@@ -141,7 +141,7 @@ export default {
   mounted() {
     let vm = this
     this.modalInstance = M.Modal.init(this.$refs.cartModal, {
-      onCloseEnd: function() {
+      onCloseEnd: function () {
         vm.$emit('input', false)
       }
     })
