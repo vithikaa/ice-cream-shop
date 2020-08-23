@@ -29,9 +29,63 @@
         </li>
       </ul>
 
-      <a href="#!" class="modal-close waves-effect waves-green btn green">
+      <div class="row">
+        <div class="input-field col s12 m7">
+          <input type="text" id="customer_name" v-model="customer.name" />
+          <label for="customer_name">Name</label>
+        </div>
+
+        <div class="input-field col s12 m7">
+          <input type="text" id="customer_phone" v-model="customer.phone" />
+          <label for="customer_phone">Phone</label>
+        </div>
+
+        <div class="input-field col s12">
+          <input
+            type="text"
+            id="customer_address_street"
+            v-model="customer.address.street"
+          />
+          <label for="customer_address_street">Delivery Address - Street</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <input
+            type="text"
+            id="customer_address_locality"
+            v-model="customer.address.locality"
+          />
+          <label for="customer_address_locality">Locality</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <input
+            type="text"
+            id="customer_address_city"
+            v-model="customer.address.city"
+          />
+          <label for="customer_address_city">City</label>
+        </div>
+
+        <div class="input-field col s12 m6">
+          <input
+            type="text"
+            id="customer_address_pincode"
+            v-model="customer.address.pincode"
+          />
+          <label for="customer_address_pincode">Pincode</label>
+        </div>
+      </div>
+
+      <div
+        class="modal-close waves-effect waves-green btn green"
+        :class="{
+          disabled: !cartTotal
+        }"
+        @click="checkout"
+      >
         Checkout
-      </a>
+      </div>
     </div>
     <!-- <div class="modal-footer">
       <a href="#!" class="modal-close waves-effect waves-green btn-flat green">
@@ -56,7 +110,17 @@ export default {
 
   data() {
     return {
-      modalInstance: null
+      modalInstance: null,
+      customer: {
+        name: null,
+        phone: null,
+        address: {
+          street: null,
+          locality: null,
+          city: null,
+          pincode: null
+        }
+      }
     }
   },
 
@@ -64,7 +128,7 @@ export default {
     cart() {
       return this.$store.state.cart
     },
-    
+
     cartTotal() {
       return this.cart.reduce((s, a) => s + a.price, 0)
     }
