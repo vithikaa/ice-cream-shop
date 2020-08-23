@@ -16,6 +16,10 @@ export default new Vuex.Store({
     removeFromCart(state, payload) {
       if (state.cart.indexOf(payload) != -1)
         state.cart.splice(state.cart.indexOf(payload), 1)
+    },
+
+    clearCart(state) {
+      state.cart = []
     }
   },
 
@@ -26,6 +30,10 @@ export default new Vuex.Store({
 
     removeFromCart(context, payload) {
       context.commit('removeFromCart', payload)
+    },
+
+    clearCart(context) {
+      context.commit('clearCart')
     }
   },
 
