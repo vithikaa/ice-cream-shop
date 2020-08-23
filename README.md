@@ -7,11 +7,11 @@ A minimalist ice cream shop website where the user can add and customise ice cre
 Installation of all dependencies:
 
 Before you start, run :
-npm i
+```npm i ```
 
 # Server :
-npm start
+ ```npm start```
 # Server (dev version) :
-npm r
+```npm run dev```
 # Front-end dev server :
-npm run serve
+```npm run serve```
