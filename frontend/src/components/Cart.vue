@@ -148,6 +148,20 @@ export default {
       if (state) this.modalInstance.open()
       else this.modalInstance.close()
     }
+  },
+
+  methods: {
+    checkout() {
+      let icecreams = this.cart.map(icecream => ({
+        flavor: icecream.flavor._id,
+        wafer: icecream.wafer._id,
+        toppings: icecream.toppings.map(t => t._id)
+      }))
+
+      let order = { icecreams, customer: this.customer }
+
+      console.log(order)
+    }
   }
 }
 </script>
