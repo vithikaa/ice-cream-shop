@@ -3,7 +3,27 @@
     <section class="section">
       <div class="container">
         <div class="row">
-          <div class="col s12 m6"></div>
+          <div class="col s12 m6">
+            <div class="preview">
+              <div class="preview-top">
+                <img
+                  :src="selectedIcecream.flavor.image"
+                  alt=""
+                  width="200px"
+                />
+                <img
+                  :src="topping.image"
+                  alt=""
+                  width="200px"
+                  v-for="topping in selectedIcecream.toppings"
+                  :key="topping._id"
+                />
+              </div>
+              <div class="preview-bottom">
+                <img :src="selectedIcecream.wafer.image" alt="" width="200px" />
+              </div>
+            </div>
+          </div>
           <div class="col s12 m6">
             <h3 class="light">Let's pick an ice cream for you</h3>
 
@@ -97,10 +117,12 @@ export default {
       selectedIcecream: {
         _id: null,
         wafer: {
-          _id: null
+          _id: null,
+          image: '/wafer_base.png'
         },
         flavor: {
-          _id: null
+          _id: null,
+          image: '/flavor_base.png'
         },
         toppings: [],
         price: 0
@@ -204,10 +226,12 @@ export default {
         this.selectedIcecream = {
           _id: null,
           wafer: {
-            _id: null
+            _id: null,
+            image: '/wafer_base.png'
           },
           flavor: {
-            _id: null
+            _id: null,
+            image: '/flavor_base.png'
           },
           toppings: []
         }
@@ -225,3 +249,24 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.preview {
+  margin-top: 50px;
+  .preview-top {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: absolute;
+    img {
+      position: absolute;
+    }
+  }
+  .preview-bottom {
+    width: 200px;
+    position: absolute;
+    margin-top: 130px;
+  }
+}
+</style>
