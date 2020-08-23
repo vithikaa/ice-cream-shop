@@ -21,7 +21,7 @@
                 "
                 @click="selectFlavor(flavor)"
               >
-                {{ flavor.name }}
+                {{ flavor.name }} - Rs {{ flavor.price }}
               </div>
             </div>
 
@@ -41,7 +41,7 @@
                 "
                 @click="selectWafer(wafer)"
               >
-                {{ wafer.name }}
+                {{ wafer.name }} - Rs {{ wafer.price }}
               </div>
             </div>
 
@@ -61,7 +61,7 @@
                 "
                 @click="toggleTopping(topping)"
               >
-                {{ topping.name }}
+                {{ topping.name }} - Rs {{ topping.price }}
               </div>
             </div>
 
@@ -76,7 +76,7 @@
                     !selectedIcecream.wafer._id || !selectedIcecream.flavor._id
                 }"
               >
-                Add to Cart
+                Add to Cart - Rs {{ selectedIcecream.price }}
               </div>
             </div>
           </div>
@@ -102,45 +102,68 @@ export default {
         flavor: {
           _id: null
         },
-        toppings: []
+        toppings: [],
+        price: 0
       },
 
       options: {
         wafers: [
           {
             _id: 'id0',
-            name: 'Plain'
+            name: 'Plain',
+            price: 15
           },
           {
             _id: 1,
-            name: 'Waffle'
+            name: 'Waffle',
+            price: 15
           }
         ],
         flavors: [
           {
             _id: 'id0',
-            name: 'Vanilla'
+            name: 'Vanilla',
+            price: 15
           },
           {
             _id: 'id1',
-            name: 'Chocolate'
+            name: 'Chocolate',
+            price: 15
           }
         ],
         toppings: [
           {
             _id: 'id0',
-            name: 'Roasted Almonds'
+            name: 'Roasted Almonds',
+            price: 15
           },
           {
             _id: 'id1',
-            name: 'Tuti Fruti'
+            name: 'Tuti Fruti',
+            price: 15
           },
           {
             _id: 'id2',
-            name: 'Choco Chips'
+            name: 'Choco Chips',
+            price: 15
           }
         ]
       }
+    }
+  },
+
+  computed: {
+    selectedPrice() {
+      let sum =
+        this.selectedIcecream.flavor.price + this.selectedIcecream.wafer.price
+      for (let topping of this.selectedIcecream.toppings) sum += topping.price
+      return sum || 0
+    }
+  },
+
+  watch: {
+    selectedPrice(value) {
+      this.selectedIcecream.price = value
     }
   },
 
