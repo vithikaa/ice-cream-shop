@@ -20,7 +20,11 @@
             /></span>
           </p>
           <p class="right-align">Rs {{ icecream.price }}</p>
-          <a href="#!" class="secondary-content red-text" @click="() => {}">
+          <a
+            href="#!"
+            class="secondary-content red-text"
+            @click="removeFromCart(icecream)"
+          >
             <i class="material-icons">close</i>
           </a>
         </li>
@@ -175,6 +179,10 @@ export default {
           console.error(err)
           M.toast({ html: 'Error occured.' })
         })
+    },
+
+    removeFromCart(icecream) {
+      this.$store.dispatch('removeFromCart', icecream)
     }
   }
 }
