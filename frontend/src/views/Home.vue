@@ -114,7 +114,7 @@ export default {
             price: 15
           },
           {
-            _id: 1,
+            _id: 'id1',
             name: 'Waffle',
             price: 15
           }
