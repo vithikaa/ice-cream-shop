@@ -78,7 +78,7 @@
       </div>
 
       <div
-        class="modal-close waves-effect waves-green btn green"
+        class="waves-effect waves-green btn green"
         :class="{
           disabled: !cartTotal
         }"
@@ -160,7 +160,21 @@ export default {
 
       let order = { icecreams, customer: this.customer }
 
-      console.log(order)
+      this.$axios
+        .post('/orders', order)
+        .then(response => {
+          if (response.data.success) {
+            M.toast({ html: 'Order placed!' })
+            this.$store.dispatch('clearCart')
+            this.modalInstance.close()
+          } else {
+            M.toast({ html: 'Error occured.' })
+          }
+        })
+        .catch(err => {
+          console.error(err)
+          M.toast({ html: 'Error occured.' })
+        })
     }
   }
 }
