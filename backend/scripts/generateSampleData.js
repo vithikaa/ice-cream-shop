@@ -18,7 +18,31 @@ let flavors = [
   {
     name: "Vanilla",
     price: 20,
-    image: "/some-sexy-image/that-we-will-add.png",
+    image: "/flavor_vanilla.png",
+    available: true,
+  },
+  {
+    name: "Strawberry",
+    price: 20,
+    image: "/flavor_strawberry.png",
+    available: true,
+  },
+  {
+    name: "Mango",
+    price: 25,
+    image: "/flavor_mango.png",
+    available: true,
+  },
+  {
+    name: "Coconut",
+    price: 25,
+    image: "/flavor_coconut.png",
+    available: true,
+  },
+  {
+    name: "Chocolate",
+    price: 30,
+    image: "/flavor_chocolate.png",
     available: true,
   },
 ];
@@ -26,8 +50,20 @@ let flavors = [
 let wafers = [
   {
     name: "Plain",
+    price: 20,
+    image: "/wafer_plain.png",
+    available: true,
+  },
+  {
+    name: "Waffle",
     price: 25,
-    image: "/some-sexy-image/that-we-will-add.png",
+    image: "/wafer_waffle.png",
+    available: true,
+  },
+  {
+    name: "Chocolate",
+    price: 30,
+    image: "/wafer_choco.png",
     available: true,
   },
 ];
@@ -36,37 +72,37 @@ let toppings = [
   {
     name: "Tutti Fruti",
     price: 15,
-    image: "/some-sexy-image/that-we-will-add.png",
+    image: "/topping_tutti.png",
+    available: true,
+  },
+  {
+    name: "Roasted Badam",
+    price: 15,
+    image: "/topping_badam.png",
+    available: true,
+  },
+  {
+    name: "Choco chips",
+    price: 15,
+    image: "/topping_choco.png",
     available: true,
   },
 ];
 
-async function insertFlavors() {
+async function insertData() {
   for (let flavor of flavors) {
     const newFlavor = new Flavor(flavor);
-
     await newFlavor.save().catch(console.error);
+  }
+  for (let wafer of wafers) {
+    const newWafer = new Wafer(wafer);
+    await newWafer.save().catch(console.error);
+  }
+  for (let topping of toppings) {
+    const newTopping = new Topping(topping);
+    await newTopping.save().catch(console.error);
   }
   mongoose.connection.close();
 }
-insertFlavors();
 
-// async function insertWafers() {
-//   for (let wafer of wafers) {
-//     const newWafer = new Wafer(wafer);
-
-//     await newWafer.save().catch(console.error);
-//   }
-//   mongoose.connection.close();
-// }
-// insertWafers();
-
-// async function insertToppings() {
-//   for (let topping of toppings) {
-//     const newTopping = new Topping(topping);
-
-//     await newTopping.save().catch(console.error);
-//   }
-//   mongoose.connection.close();
-// }
-// insertToppings();
+insertData();
