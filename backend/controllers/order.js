@@ -23,6 +23,9 @@ exports.orders_get = async (req, res) => {
 exports.order_get = async (req, res) => {
   const { orderId } = req.params
   Order.findOne({ _id: orderId })
+    .populate('icecreams.wafer')
+    .populate('icecreams.flavor')
+    .populate('icecreams.toppings')
     .then((doc) => {
       res.send({
         success: true,
