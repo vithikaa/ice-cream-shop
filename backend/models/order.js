@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const { Schema } = mongoose;
+const { Schema } = mongoose
 
 const OrderSchema = new Schema(
   {
@@ -33,16 +33,16 @@ const OrderSchema = new Schema(
       {
         wafer: {
           type: Schema.Types.ObjectId,
-          ref: "Wafer",
+          ref: 'Wafer',
         },
         flavor: {
           type: Schema.Types.ObjectId,
-          ref: "Flavor",
+          ref: 'Flavor',
         },
         toppings: [
           {
             type: Schema.Types.ObjectId,
-            ref: "Topping",
+            ref: 'Topping',
           },
         ],
         price: {
@@ -60,30 +60,22 @@ const OrderSchema = new Schema(
       virtuals: true,
     },
   }
-);
+)
 
-
-OrderSchema.virtual('grandTotal').get(function(){
-  return this.icecreams.reduce(function(sum, icecream){
-     return (sum = sum + icecream.price, 0);
-  });
+OrderSchema.virtual('grandTotal').get(function () {
+  return this.icecreams.reduce((sum, icecream) => sum + icecream.price, 0)
 })
 
-
-
-const OrderModel = mongoose.model("Order", OrderSchema);
+const OrderModel = mongoose.model('Order', OrderSchema)
 
 module.exports = {
   model: OrderModel,
   schema: OrderSchema,
-};
-
-
+}
 
 /*
- * TODO: 
+ * TODO:
  * 1.[x] Declare Collection by making model.
  * 2.[x] export sab kuch
  * 3. define virtual grandTotal property  --- find out about this
  * */
-
