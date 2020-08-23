@@ -215,7 +215,13 @@ export default {
       }
     },
 
-    fetchOptions() {}
+    fetchOptions() {
+      this.$axios.get('/icecreams/options').then(response => {
+        if (response.data.success) {
+          this.options = response.data.data
+        }
+      })
+    }
   }
 }
 </script>
