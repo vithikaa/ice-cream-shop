@@ -4,7 +4,7 @@
       <h4>Cart</h4>
       <p>Please review your cart and enter delivery details to checkout.</p>
 
-      <ul class="collection">
+      <ul class="collection with-header">
         <li
           v-for="(icecream, idx) in cart"
           :key="idx"
